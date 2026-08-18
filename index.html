@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vaibhav's Portfolio</title>
   <style>
-    /* iOS Base Reset & Typography */
+/* iOS Base Reset & Typography */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
@@ -13,11 +13,18 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       
-      /* The "Little Dark" Background (Sleek Slate/Steel Gradient) */
-      background: linear-gradient(135deg, #3a3f4a 0%, #1c1f26 100%);
-      background-attachment: fixed; /* Keeps the background still while scrolling */
+      /* THE FIX 1: Ambient Mesh Wallpaper. 
+         This creates a deep slate background with soft, glowing blue/cyan abstract orbs 
+         so the glass actually has beautiful colors to blur and refract. */
+      background-color: #1e1e24; 
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(94, 162, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(94, 162, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(200, 200, 255, 0.05) 0%, transparent 50%);
+      background-attachment: fixed;
       
-      color: #f5f5f7; /* Off-white text for readability */
+      color: #ffffff; 
     }
     
     /* Clean iOS Headers */
@@ -30,10 +37,11 @@
 
     /* Floating Frosted Glass Navigation */
     nav {
-      background-color: rgba(30, 30, 30, 0.4);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+      backdrop-filter: blur(30px) saturate(150%);
+      -webkit-backdrop-filter: blur(30px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       
       margin: 20px auto;
       width: 90%;
@@ -46,10 +54,10 @@
       top: 20px;
       z-index: 100;
       overflow-x: auto;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
     nav a {
-      color: #ebebf5;
+      color: #e5e5ea;
       text-decoration: none;
       font-weight: 600;
       font-size: 13px;
@@ -59,12 +67,12 @@
       white-space: nowrap;
     }
     nav a:hover, nav a:active {
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: rgba(255, 255, 255, 0.25);
       color: #ffffff;
     }
     nav a.contact-tab {
       margin-left: auto;
-      color: #64d2ff; /* Bright iOS Blue for dark themes */
+      color: #0a84ff; /* Authentic iOS Blue */
     }
 
     /* Main Layout */
@@ -88,8 +96,8 @@
       height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      border: 3px solid rgba(255, 255, 255, 0.5);
       flex-shrink: 0;
     }
     .profile-info h1 {
@@ -98,14 +106,13 @@
     }
     .profile-info .degree-title {
       font-size: 16px;
-      color: #64d2ff;
+      color: #0a84ff;
       margin-bottom: 4px;
       font-weight: 600;
     }
     .profile-info .location-text {
       font-size: 14px;
       color: #ebebf5;
-      opacity: 0.8;
     }
     
     @media (max-width: 600px) {
@@ -115,17 +122,23 @@
       }
     }
 
-    /* iOS App Library Folder Style Cards */
+    /* THE FIX 2: True iOS App Library Folders */
     section {
-      /* This is the magic for the frosted glass */
-      background-color: rgba(255, 255, 255, 0.05); /* Barely visible white */
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px); /* For Safari/iOS */
-      border: 1px solid rgba(255, 255, 255, 0.15); /* Light glass edge */
+      /* Creates a bright, glossy diagonal light reflection across the glass */
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
       
-      border-radius: 28px; /* Slightly softer corners */
+      /* Apple's secret sauce: Heavy blur + Heavy Saturation */
+      backdrop-filter: blur(40px) saturate(150%); 
+      -webkit-backdrop-filter: blur(40px) saturate(150%);
+      
+      /* The 3D Glass Edge: Bright white on the top/left, subtle on the bottom/right */
+      border: 1px solid rgba(255, 255, 255, 0.15); 
+      border-top: 1px solid rgba(255, 255, 255, 0.45); 
+      border-left: 1px solid rgba(255, 255, 255, 0.35); 
+      
+      border-radius: 32px; /* Smoother, deeper curves */
       padding: 30px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); 
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Floating shadow */
     }
 
     /* Hardware Stats UI */
@@ -136,23 +149,24 @@
       margin-bottom: 25px;
     }
     .stat-card {
-      background: rgba(0, 0, 0, 0.2); /* Darker inset */
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(0, 0, 0, 0.15); /* Inset shadow effect */
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
       padding: 15px;
-      border-radius: 18px;
+      border-radius: 20px;
       flex: 1;
       min-width: 120px;
       text-align: center;
+      box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
     }
     .stat-value {
       font-size: 24px;
       font-weight: 700;
-      color: #64d2ff;
+      color: #0a84ff;
     }
     .stat-label {
       font-size: 12px;
       color: #ebebf5;
-      opacity: 0.7;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -169,12 +183,12 @@
     .media-shape {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background-color: rgba(0, 0, 0, 0.2);
-      border-radius: 20px; 
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 22px; 
       overflow: hidden;
       position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(0, 0, 0, 0.3);
     }
     
     .media-shape img, .media-shape video {
@@ -188,15 +202,17 @@
       position: absolute;
       bottom: 10px;
       left: 10px;
-      background: rgba(30, 30, 30, 0.6);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(30, 30, 30, 0.5);
+      backdrop-filter: blur(20px) saturate(150%);
+      -webkit-backdrop-filter: blur(20px) saturate(150%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
       color: #ffffff;
       font-size: 12px;
       font-weight: 600;
       padding: 6px 12px;
       border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
