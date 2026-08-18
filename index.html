@@ -151,6 +151,43 @@
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
+    /* Profile Header Styles */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%; /* Makes the image a perfect circle */
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06); /* Soft Apple shadow */
+      border: 3px solid #ffffff;
+      flex-shrink: 0; /* Prevents the circle from squishing on small screens */
+    }
+    .profile-info h1 {
+      margin-bottom: 4px;
+      font-size: 28px;
+    }
+    .profile-info .degree-title {
+      font-size: 16px;
+      color: #007aff;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .profile-info .location-text {
+      font-size: 14px;
+      color: #86868b;
+    }
+    
+    /* Centers everything perfectly when viewed on a phone */
+    @media (max-width: 600px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -164,6 +201,16 @@
   </nav>
 
   <main>
+    <!-- Profile Header Section -->
+    <section class="profile-header">
+      <img src="PROJECT FORMAL PHOTO.png" alt="Vaibhav Rajmane" class="profile-photo">
+      <div class="profile-info">
+        <h1>Vaibhav Shivaji Rajmane</h1>
+        <h2 class="degree-title">Electronics and Computer Engineering Student</h2>
+        <p class="location-text">NMIET (PCET), Savitribai Phule Pune University</p>
+      </div>
+    </section>
+    <!-- About Me Section -->
     <section id="bio">
       <h2>About Me</h2>
       <p>Second-year Electronics and Computer Engineering student at Savitribai Phule Pune University (NMIET) specializing in microcontrollers, sensor integration, and system architecture. Passionate about bringing hardware to life through clean logic and robust wiring configurations.
