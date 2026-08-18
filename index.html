@@ -5,72 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Engineering Dashboard</title>
   <style>
-    /* Base Reset & Typography */
+    /* iOS Base Reset & Typography */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: #0d1117; /* Dark dashboard background */
-      color: #c9d1d9; /* Soft grey text for readability */
-      line-height: 1.6;
+      /* Apple's default San Francisco font */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f2f2f7; /* iOS standard light gray background */
+      color: #1d1d1f; /* Apple's dark grey text */
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
     
-    /* Technical Font for Headers */
+    /* Clean iOS Headers */
     h1, h2, h3 {
-      font-family: 'Courier New', Courier, monospace; 
-      color: #58a6ff; /* Dashboard accent blue */
+      font-weight: 700;
+      letter-spacing: -0.5px;
       margin-bottom: 15px;
+      color: #1d1d1f;
     }
 
-    /* Navigation Bar (The Tabs) */
+    /* Floating Frosted Glass Navigation */
     nav {
-      background-color: #161b22;
-      padding: 15px 20px;
+      /* The iOS Blur Effect */
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px); /* Safari support */
+      
+      margin: 20px auto;
+      width: 90%;
+      max-width: 1000px;
+      padding: 10px;
       display: flex;
-      gap: 20px;
-      border-bottom: 1px solid #30363d;
+      gap: 10px;
+      border-radius: 50px; /* Pill shape */
       position: sticky;
-      top: 0;
+      top: 20px;
       z-index: 100;
-      overflow-x: auto; /* Allows swiping tabs on small phone screens */
+      overflow-x: auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* Soft blurred shadow */
     }
     nav a {
-      color: #c9d1d9;
+      color: #86868b;
       text-decoration: none;
       font-weight: 600;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 8px 12px;
-      border-radius: 6px;
-      transition: background 0.3s;
+      font-size: 13px;
+      padding: 10px 18px;
+      border-radius: 30px;
+      transition: all 0.3s ease;
       white-space: nowrap;
     }
-    nav a:hover {
-      background-color: #21262d;
-      color: #58a6ff;
+    nav a:hover, nav a:active {
+      background-color: #ffffff;
+      color: #007aff; /* iOS Blue */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     nav a.contact-tab {
-      margin-left: auto; /* Pushes Contact tab to the far right */
-      color: #3fb950; /* Distinct green color for contact */
+      margin-left: auto;
+      color: #007aff; 
     }
 
-    /* Main Dashboard Layout */
+    /* Main Layout */
     main {
       max-width: 1000px;
       margin: 40px auto;
       padding: 0 20px;
       display: flex;
       flex-direction: column;
-      gap: 50px;
+      gap: 30px;
     }
 
-    /* Section Cards */
+    /* iOS Style Cards */
     section {
-      background-color: #161b22;
-      border: 1px solid #30363d;
-      border-radius: 12px;
+      background-color: #ffffff;
+      border-radius: 24px; /* Classic Apple squircle corners */
       padding: 30px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      /* This creates the blurred shadow effect at the edges */
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); 
     }
 
     /* Hardware Stats UI */
@@ -81,90 +91,88 @@
       margin-bottom: 25px;
     }
     .stat-card {
-      background: #0d1117;
-      border: 1px solid #30363d;
+      background: #f5f5f7;
       padding: 15px;
-      border-radius: 8px;
+      border-radius: 18px;
       flex: 1;
       min-width: 120px;
       text-align: center;
     }
     .stat-value {
-      font-size: 22px;
-      font-weight: bold;
-      color: #58a6ff;
-      font-family: monospace;
+      font-size: 24px;
+      font-weight: 700;
+      color: #007aff; /* iOS Blue */
     }
     .stat-label {
-      font-size: 11px;
-      color: #8b949e;
+      font-size: 12px;
+      color: #86868b;
+      font-weight: 500;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
     }
 
-    /* Media Shapes (Images & Videos) */
+    /* Media Shapes */
     .media-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
     
-    /* The Container Shape */
     .media-shape {
       width: 100%;
-      aspect-ratio: 16 / 9; /* Professional widescreen ratio */
-      background-color: #0d1117;
-      border: 1px solid #30363d;
-      border-radius: 8px; 
-      overflow: hidden; /* Keeps images strictly inside the rounded borders */
+      aspect-ratio: 16 / 9;
+      background-color: #f5f5f7;
+      border-radius: 20px; 
+      overflow: hidden;
       position: relative;
+      /* Soft blurred shadow around media */
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     }
     
-    /* Forces media to perfectly fill the shape without stretching */
     .media-shape img, .media-shape video {
       width: 100%;
       height: 100%;
       object-fit: cover; 
     }
     
-    /* Small technical label overlay on media */
+    /* Frosted glass label over media */
     .media-label {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(13, 17, 23, 0.85);
-      color: #8b949e;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #1d1d1f;
       font-size: 12px;
-      padding: 8px;
-      font-family: monospace;
-      border-top: 1px solid #30363d;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Navigation Tabs -->
+  <!-- Floating Frosted Glass Navigation -->
   <nav>
-    <a href="#bio">My Bio</a>
-    <a href="#projects">Hardware Projects</a>
+    <a href="#bio">Bio</a>
+    <a href="#projects">Projects</a>
     <a href="#certificates">Certificates</a>
-    <!-- Contact is pushed to the end via CSS -->
     <a href="#contact" class="contact-tab">Contact</a>
   </nav>
 
   <main>
-    <!-- Bio Section -->
     <section id="bio">
-      <h2>> System.User_Bio</h2>
-      <p>Undergraduate Electronics Engineering Student specializing in microcontrollers, sensor integration, and system architecture. Passionate about bringing hardware to life through clean logic and robust wiring configurations.</p>
+      <h2>About Me</h2>
+      <p>First-year Electronics and Computer Engineering student at Savitribai Phule Pune University (NMIET) specializing in microcontrollers, sensor integration, and system architecture. Passionate about bringing hardware to life through clean logic and robust wiring configurations.</p>
     </section>
 
-    <!-- Projects / Media Section -->
     <section id="projects">
-      <h2>> Active_Projects</h2>
-      <p>Autonomous Vehicle (Line-Following & Obstacle Avoidance) - Exhibition Rank: 3rd.</p>
+      <h2>Hardware Projects</h2>
+      <p>Autonomous Vehicle (Line-Following & Obstacle Avoidance) - NMIET Exhibition Rank: 3rd.</p>
       
-      <!-- Technical Stat Cards -->
       <div class="stats-row">
          <div class="stat-card">
             <div class="stat-value">Arduino</div>
@@ -180,48 +188,40 @@
          </div>
       </div>
 
-      <!-- Media Insert Shapes -->
       <div class="media-grid">
-        
         <!-- Shape 1: Image -->
         <div class="media-shape">
-          <!-- Change 'wiring.jpg' to your exact image file name -->
           <img src="wiring.jpg" alt="Project Wiring Diagram">
-          <div class="media-label">sys_diagram_v1.jpg</div>
+          <div class="media-label">Wiring Diagram</div>
         </div>
 
         <!-- Shape 2: Video -->
         <div class="media-shape">
-          <!-- Change 'demo.mp4' to your exact video file name -->
           <video controls muted loop>
             <source src="demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
           </video>
-          <div class="media-label">run_test_sequence.mp4</div>
+          <div class="media-label">Test Run</div>
         </div>
-
       </div>
     </section>
 
-    <!-- Certificates Section -->
     <section id="certificates">
-      <h2>> Credentials</h2>
+      <h2>Certificates</h2>
       <p>Technical certifications and academic exhibition awards.</p>
       <div class="media-grid">
         <div class="media-shape">
           <img src="certificate.jpg" alt="Exhibition Certificate">
-          <div class="media-label">exhibition_award.jpg</div>
+          <div class="media-label">Exhibition Award</div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
-      <h2>> Initialize_Connection</h2>
+      <h2>Get In Touch</h2>
       <p>Available for electronics collaborations and engineering projects.</p>
       <br>
-      <p>Email: <em>your.email@example.com</em></p>
-      <p>GitHub: <em>github.com/yourusername</em></p>
+      <p>Email: <em>vaibhavrajmane01@gmail.com</em></p>
+      <p>GitHub: <em>github.com/vaibhavrajmane</em></p>
     </section>
   </main>
 
