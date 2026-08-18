@@ -7,20 +7,17 @@
   <style>
     /* iOS Base Reset & Typography */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-      /* Apple's default font */
+    
+    body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       
-      /* The Electronics Schematic Background */
-      background-color: #f2f2f7; 
-      background-image: 
-        linear-gradient(rgba(0, 122, 255, 0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 122, 255, 0.07) 1px, transparent 1px);
-      background-size: 25px 25px; /* Size of the grid squares */
+      /* The "Little Dark" Background (Sleek Slate/Steel Gradient) */
+      background: linear-gradient(135deg, #3a3f4a 0%, #1c1f26 100%);
+      background-attachment: fixed; /* Keeps the background still while scrolling */
       
-      color: #1d1d1f; 
+      color: #f5f5f7; /* Off-white text for readability */
     }
     
     /* Clean iOS Headers */
@@ -28,15 +25,15 @@ body {
       font-weight: 700;
       letter-spacing: -0.5px;
       margin-bottom: 15px;
-      color: #1d1d1f;
+      color: #ffffff;
     }
 
     /* Floating Frosted Glass Navigation */
     nav {
-      /* The iOS Blur Effect */
-      background-color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(30, 30, 30, 0.4);
       backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px); /* Safari support */
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       
       margin: 20px auto;
       width: 90%;
@@ -44,15 +41,15 @@ body {
       padding: 10px;
       display: flex;
       gap: 10px;
-      border-radius: 50px; /* Pill shape */
+      border-radius: 50px;
       position: sticky;
       top: 20px;
       z-index: 100;
       overflow-x: auto;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); /* Soft blurred shadow */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     }
     nav a {
-      color: #86868b;
+      color: #ebebf5;
       text-decoration: none;
       font-weight: 600;
       font-size: 13px;
@@ -62,13 +59,12 @@ body {
       white-space: nowrap;
     }
     nav a:hover, nav a:active {
-      background-color: #ffffff;
-      color: #007aff; /* iOS Blue */
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
     }
     nav a.contact-tab {
       margin-left: auto;
-      color: #007aff; 
+      color: #64d2ff; /* Bright iOS Blue for dark themes */
     }
 
     /* Main Layout */
@@ -81,13 +77,55 @@ body {
       gap: 30px;
     }
 
-    /* iOS Style Cards */
+    /* Profile Header Styles */
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      flex-shrink: 0;
+    }
+    .profile-info h1 {
+      margin-bottom: 4px;
+      font-size: 28px;
+    }
+    .profile-info .degree-title {
+      font-size: 16px;
+      color: #64d2ff;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .profile-info .location-text {
+      font-size: 14px;
+      color: #ebebf5;
+      opacity: 0.8;
+    }
+    
+    @media (max-width: 600px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* iOS App Library Folder Style Cards */
     section {
-      background-color: #ffffff;
-      border-radius: 24px; /* Classic Apple squircle corners */
+      /* This is the magic for the frosted glass */
+      background-color: rgba(255, 255, 255, 0.05); /* Barely visible white */
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px); /* For Safari/iOS */
+      border: 1px solid rgba(255, 255, 255, 0.15); /* Light glass edge */
+      
+      border-radius: 28px; /* Slightly softer corners */
       padding: 30px;
-      /* This creates the blurred shadow effect at the edges */
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04); 
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); 
     }
 
     /* Hardware Stats UI */
@@ -98,7 +136,8 @@ body {
       margin-bottom: 25px;
     }
     .stat-card {
-      background: #f5f5f7;
+      background: rgba(0, 0, 0, 0.2); /* Darker inset */
+      border: 1px solid rgba(255, 255, 255, 0.05);
       padding: 15px;
       border-radius: 18px;
       flex: 1;
@@ -108,11 +147,12 @@ body {
     .stat-value {
       font-size: 24px;
       font-weight: 700;
-      color: #007aff; /* iOS Blue */
+      color: #64d2ff;
     }
     .stat-label {
       font-size: 12px;
-      color: #86868b;
+      color: #ebebf5;
+      opacity: 0.7;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -129,12 +169,12 @@ body {
     .media-shape {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background-color: #f5f5f7;
+      background-color: rgba(0, 0, 0, 0.2);
       border-radius: 20px; 
       overflow: hidden;
       position: relative;
-      /* Soft blurred shadow around media */
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
     
     .media-shape img, .media-shape video {
@@ -148,52 +188,15 @@ body {
       position: absolute;
       bottom: 10px;
       left: 10px;
-      background: rgba(255, 255, 255, 0.6);
+      background: rgba(30, 30, 30, 0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      color: #1d1d1f;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
       font-size: 12px;
       font-weight: 600;
       padding: 6px 12px;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    /* Profile Header Styles */
-    .profile-header {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-    .profile-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%; /* Makes the image a perfect circle */
-      object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06); /* Soft Apple shadow */
-      border: 3px solid #ffffff;
-      flex-shrink: 0; /* Prevents the circle from squishing on small screens */
-    }
-    .profile-info h1 {
-      margin-bottom: 4px;
-      font-size: 28px;
-    }
-    .profile-info .degree-title {
-      font-size: 16px;
-      color: #007aff;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-    .profile-info .location-text {
-      font-size: 14px;
-      color: #86868b;
-    }
-    
-    /* Centers everything perfectly when viewed on a phone */
-    @media (max-width: 600px) {
-      .profile-header {
-        flex-direction: column;
-        text-align: center;
-      }
     }
   </style>
 </head>
