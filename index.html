@@ -13,26 +13,16 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       
-      /* THE FIX 1: Ambient Mesh Wallpaper. 
-         This creates a deep slate background with soft, glowing blue/cyan abstract orbs 
-         so the glass actually has beautiful colors to blur and refract. */
-      background-color: #1e1e24; 
+      /* The Background Image with a Dark Tint Overlay */
       background-image: 
-        radial-gradient(circle at 0% 0%, rgba(94, 162, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 100% 0%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 100% 100%, rgba(94, 162, 255, 0.12) 0%, transparent 50%),
-        radial-gradient(circle at 0% 100%, rgba(200, 200, 255, 0.05) 0%, transparent 50%);
-      background-attachment: fixed;
+        linear-gradient(rgba(20, 20, 25, 0.7), rgba(20, 20, 25, 0.8)), /* This acts like dark sunglasses */
+        url('Portfolio Background.jpg'); /* <-- CHANGE THIS TO YOUR EXACT FILE NAME */
+      
+      background-size: cover; /* Forces the image to fill the whole screen */
+      background-position: center; /* Keeps the best part of the photo centered */
+      background-attachment: fixed; /* Keeps the background perfectly still while scrolling */
       
       color: #ffffff; 
-    }
-    
-    /* Clean iOS Headers */
-    h1, h2, h3 {
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 15px;
-      color: #ffffff;
     }
 
     /* Floating Frosted Glass Navigation */
