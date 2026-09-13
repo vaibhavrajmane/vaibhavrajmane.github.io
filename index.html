@@ -204,6 +204,18 @@
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
+    /* Scroll Animation Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px); /* Pushes the box down slightly */
+      transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      will-change: opacity, transform; /* Hardware acceleration for smooth rendering */
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0); /* Brings it back to the original position */
+    }
   </style>
 </head>
 <body>
@@ -218,7 +230,8 @@
 
   <main>
     <!-- Profile Header Section -->
-    <section class="profile-header">
+    <section class="profile-header reveal">
+      
       <img src="Illustrated PFP.png" alt="Vaibhav Shivaji Rajmane" class="profile-photo">
       <div class="profile-info">
         <h1>Vaibhav Shivaji Rajmane</h1>
@@ -227,7 +240,7 @@
       </div>
     </section>
     <!-- About Me Section -->
-    <section id="bio">
+    <section id="bio" class="reveal">
       <h2>About Me</h2>
       <p>Second-year Electronics and Computer Engineering student at Savitribai Phule Pune University (NMIET) specializing in microcontrollers, sensor integration, and system architecture. Passionate about bringing hardware to life through clean logic and robust wiring configurations.
         I am an Electronics Engineering undergrad passionate about bridging the gap between hardware and software. Building on my experience with award-winning autonomous vehicle projects, I am currently diving deep into PCB design and Python programming to create more complex, efficient systems.</p>
@@ -239,7 +252,7 @@
          <p>Innovative Ideas: Have a groundbreaking concept? I am always open to collaborate to build out top-tier ideas.</p>
     </section>
 
-    <section id="projects">
+    <section id="projects" class="reveal">
       <h2>Hardware Projects</h2>
       <p>Autonomous Vehicle (Line-Following & Obstacle Avoidance) - NMIET Exhibition Rank: 3rd.</p>
       <br>
@@ -273,7 +286,7 @@
       </div>
     </section>
 
-    <section id="certificates">
+    <section id="certificates" class="reveal">
       <h2>Certificates</h2>
       <p>Technical certifications and academic exhibition awards.</p>
       <br>
@@ -300,7 +313,7 @@
       </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="reveal">
       <h2>Get In Touch</h2>
       <p>Available for Electronics collaborations and Engineering projects and Performing Research.</p>
       <br>
@@ -321,6 +334,31 @@
       </p>
     </section>
   </main>
+<!-- Add this just before </body> -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Create the observer
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          // If the element is visible in the viewport
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Optional: Stop observing once it's revealed to keep it visible
+            // observer.unobserve(entry.target);
+          } else {
+             // Optional: Remove the class if you want it to hide again when scrolling up
+             entry.target.classList.remove('active');
+          }
+        });
+      }, {
+        threshold: 0.1, // Triggers when 10% of the box is visible
+        rootMargin: "0px 0px -50px 0px" // Triggers slightly before the very bottom of the screen
+      });
 
+      // Target all elements with the 'reveal' class
+      const hiddenElements = document.querySelectorAll('.reveal');
+      hiddenElements.forEach((el) => observer.observe(el));
+    });
+  </script>
 </body>
 </html>
